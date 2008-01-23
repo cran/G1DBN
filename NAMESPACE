@@ -1,7 +1,12 @@
-import(MASS)
-export(inferG1)
-export(GfromG1)
-export(edges)
-export(simulAR1)
+library(MASS)
+library(sna)
+export(BuildEdges)
+export(BuildNetwork)
+export(DBNScoreStep1)
+export(DBNScoreStep2)
+export(PRcurve)
+export(ROCcurve)
+export(SimulGeneExpressionAR1)
+export(SimulNetworkAdjMatrix)
 
 
