@@ -7,8 +7,7 @@ The score matrix has been computed from a network inference algorithm (e.g. DBNS
 }
 
 
-\usage{
-out <- BuildEdges(score,threshold=1,nb=NULL,
+\usage{BuildEdges(score,threshold=1,nb=NULL,
                   targetNames=NULL,predNames=NULL,prec=3,dec=FALSE)
 }
 
@@ -30,13 +29,14 @@ score (First column: predictor, second column: target, third column:
 corresponding score). Predictors and targets are referred to through the
 names given by targetNames or predNames when specified.  }
 
-\author{L\`ebre Sophie (\url{http://www3.imperial.ac.uk/theoreticalgenomics/people/slebre/}),
-
+\author{Lebre Sophie
+  (\url{http://newlsiit.u-strasbg.fr/bfo_en/index.php/Sophie_Lebre}),
+  
 Chiquet Julien (\url{http://stat.genopole.cnrs.fr/~jchiquet}).}
 
 \keyword{utilities}
 
-\seealso{DBNScoreStep1, DBNScoreStep2, BuildNetwork.}
+\seealso{DBNScoreStep1, DBNScoreStep2, BuildNetwork}
 
 
 \examples{
@@ -66,24 +66,24 @@ Xn <- SimulGeneExpressionAR1(MyNet$A,B,X0,sigmaEps,n)
 
 
 ## ======================================
-## NETWORK INFERENCE WITH DBN
+## NETWORK INFERENCE WITH G1DBN
 
 ## STEP 1 - The first step score matrix
 S1 <- DBNScoreStep1(Xn, method='ls')
 
-## building the edges of the Step1 inferred Graph
+## Building the edges of the network inferred after Step1
 alpha1 <- 0.5
 G1 <- BuildEdges(S1$S1ls,threshold=alpha1,dec=FALSE)
 G1
 ## STEP 2- The second step score matrix
 S2 <- DBNScoreStep2(S1$S1ls, Xn, method='ls', alpha1)
 
-## building the edges of the Step2 inferred Graph
-alpha2=0.05
+## Building the edges of the network inferred after Step2
+alpha2 <- 0.05
 G2 <- BuildEdges(S2,threshold=alpha2,dec=FALSE)
 G2
 
-## building the edges of the simulation Graph
+## Building the edges of the simulation Graph
 Gsimul <- BuildEdges(MyNet$AdjMatrix,threshold=0,dec=TRUE)
 Gsimul
 }

@@ -30,7 +30,7 @@ experiment time series).}
    transcriptional and posttranscriptional regulation of starch
    metabolism in Arabidopsis leaves. Plant Physiol. 136: 2687-2699.}
 
-\author{L\`ebre Sophie (\url{http://www3.imperial.ac.uk/theoreticalgenomics/people/slebre}), 
+\author{Lebre Sophie (\url{http://newlsiit.u-strasbg.fr/bfo_en/index.php/Sophie_Lebre}), 
 
 Chiquet Julien (\url{http://stat.genopole.cnrs.fr/~jchiquet/}).}
 
@@ -42,7 +42,7 @@ library(G1DBN)
 
 ## load data set
 data(arth800line)
-idx<-c(60, 141, 260, 333, 365, 424, 441, 512, 521, 578, 789, 799)
+id<-c(60, 141, 260, 333, 365, 424, 441, 512, 521, 578, 789, 799)
 
 ## plot first ten time series
 plot(1:23,arth800line[,60],type="l",ylim=c(2,12), xlab="Time",
@@ -50,7 +50,7 @@ plot(1:23,arth800line[,60],type="l",ylim=c(2,12), xlab="Time",
  main="Log2 transformed expression of a subset of genes of A. Thaliana")
 
 color=1
-for (i in idx){
+for (i in id){
   color=color+1
   lines(1:23,arth800line[,i,],col=color,lwd=2)
 }

@@ -29,7 +29,7 @@ ROCcurve <- function(score,validMat,dec=FALSE){
  rocy<-matrix(0,length(ScoreIdx)+1,1) # y coord of the roc curve
 
  for (i in 1:length(ScoreIdx)){
-   if(TestEdges[i]==T){
+   if(TestEdges[i]==TRUE){
      rocx[i+1]<-rocx[i]
      rocy[i+1]<-rocy[i]+1}
    else{

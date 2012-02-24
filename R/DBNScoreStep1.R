@@ -64,9 +64,19 @@ DBNScoreStep1<-function(data, method='ls',predPosition=NULL,
   ## BUILDING THE SCORE MATRICES
   ## _______________________________________________
 
+  ## Print the total number of vertices
+
+  cat("Treating", r ,"vertices:\n")
+  cpt=10
+ 
   for (i in 1:r){
-    cat("Treating vertice", i, "among", r, "\n")
-    
+    ## Print percentage of accomplished vertices
+     if ( ((i/r)*100)>=cpt ) {
+      cat(cpt, "% ",sep="")
+      cpt=cpt+10
+    }
+  
+   
     ## The regression model is
     ## Y = X
     
@@ -133,7 +143,8 @@ DBNScoreStep1<-function(data, method='ls',predPosition=NULL,
       } # end k
     } # end j
   } # end i 
-  
+  cat("\n")
+
   ## The score matrices are return
   list(S1ls=S1ls,S1tukey=S1tukey,S1huber=S1huber)
 }

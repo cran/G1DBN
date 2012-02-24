@@ -14,7 +14,7 @@ algorithm (e.g. DBNScoreStep1 or DBNScoreStep2, Shrinkage,
 Lasso, ...).}
 
 
-\usage{out <- PRcurve(score,validMat,dec=FALSE)
+\usage{PRcurve(score,validMat,dec=FALSE)
 }
 
 \arguments{\item{score}{matrix with \eqn{r} rows (=target genes) and
@@ -25,15 +25,17 @@ Lasso, ...).}
 	\item{dec}{boolean, FALSE if the smallest score points out the most significant edge, default=FALSE.} 
 }
 
-\value{A list with out\$recall and out\$precision containing respctively the recall values (\eqn{x} coordinates of the PR curve) and the precision values (\eqn{y} coordinates).} 
+\value{A list with out$recall and out$precision containing respctively the recall values (\eqn{x} coordinates of the PR curve) and the precision values (\eqn{y} coordinates).} 
 
 \keyword{utilities}
 
 \seealso{DBNScoreStep1, DBNScoreStep2, ROCcurve.}
 
-\author{L\`ebre Sophie (\url{http://www3.imperial.ac.uk/theoreticalgenomics/people/slebre}), 
 
-Chiquet Julien (\url{http://stat.genopole.cnrs.fr/~jchiquet/}).}
+\author{Lebre Sophie
+  (\url{http://newlsiit.u-strasbg.fr/bfo_en/index.php/Sophie_Lebre}),
+  
+Chiquet Julien (\url{http://stat.genopole.cnrs.fr/~jchiquet}).}
 
 \examples{
 library(G1DBN)
@@ -80,8 +82,7 @@ alpha1=0.2
 S2<-DBNScoreStep2(S1=out$S1ls,data=Xn,alpha1=alpha1)
 pr2_0.2<-PRcurve(score=S2,validMat=abs(MyNet$AdjMatrix)>0,dec=FALSE)
 
-plot(pr1$recall,pr1$precision,type="l", main="PR curves after both Step1
-and Step2",
+plot(pr1$recall,pr1$precision,type="l",main="PR curves after both Step1 and Step2",
      ylab="PPV", xlab="Sensitivity",lwd=2, xlim=c(0,1),ylim=c(0,1),lty=2)
 lines(pr2_0.8$recall,pr2_0.8$precision, col=3,lwd=2)
 lines(pr2_0.6$recall,pr2_0.6$precision, col=4,lwd=2)

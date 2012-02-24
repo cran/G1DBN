@@ -36,9 +36,10 @@ PRcurve<-function(score,validMat,dec=FALSE){
         cat(round(10*j/(round(length(tri)/10))),"% ")
       }
     }
-    recall[j]=sum(validMat*(score<=tri[j]), na.rm = T)/nbPos
-    precision[j]=sum(validMat*(score<=tri[j]), na.rm = T)/sum(score<=tri[j] *(score<1), na.rm = T)
+    recall[j]=sum(validMat*(score<=tri[j]), na.rm = TRUE)/nbPos
+    precision[j]=sum(validMat*(score<=tri[j]), na.rm = TRUE)/sum(score<=tri[j] *(score<1), na.rm = TRUE)
   }
+  cat("\n")
   return(list(recall=recall,precision=precision))
 }
 

@@ -7,7 +7,8 @@ matrix of valued adjacencies from a number of vertices, a proportion
 of edges and the range of the uniform distribution that is used to build
 the adjacency matrix. An optional vector of labels may be given.}
 
-\usage{out<-SimulNetworkAdjMatrix(Num,EdgesProp,Range,Labels=1:Num)}
+\usage{SimulNetworkAdjMatrix(Num,EdgesProp,Range,Labels=1:Num)
+}
 
 \arguments{\item{Num}{number of genes}
   \item{EdgesProp}{edges proportion in the network}
@@ -15,13 +16,13 @@ the adjacency matrix. An optional vector of labels may be given.}
   \item{Labels}{an optional vector of labels for the edges}
 }
 
-\value{a list that contains out\$Vertices\$Num the number of vertices,  out\$Vertices\$Labels a vector of labels of the vertices, out\$Vertices\$Regulated a vector of the regulated vertices, out\$Edges\$Prop the proportion of edges, out\$Edges\$Num the number of edges, out\$AdjMatrix an adjacency matrix  (binary) and out\$A a valued adjacency matrix.}
+\value{a list that contains out$Vertices$Num the number of vertices,  out$Vertices$Labels a vector of labels of the vertices, out$Vertices$Regulated a vector of the regulated vertices, out$Edges$Prop the proportion of edges, out$Edges$Num the number of edges, out$AdjMatrix an adjacency matrix  (binary) and out$A a valued adjacency matrix.}
 
 
-\author{L\`ebre Sophie (\url{http://www3.imperial.ac.uk/theoreticalgenomics/people/slebre/}),
-
+\author{Lebre Sophie
+  (\url{http://newlsiit.u-strasbg.fr/bfo_en/index.php/Sophie_Lebre}),
+  
 Chiquet Julien (\url{http://stat.genopole.cnrs.fr/~jchiquet}).}
-
 
 \seealso{SimulGeneExpressionAR1, BuildEdges}
 

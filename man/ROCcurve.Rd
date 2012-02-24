@@ -7,7 +7,7 @@ allows to compute the corresponding ROC curve by returning a list with
 the respective \eqn{x} and \eqn{y} coordinates of the ROC curve. The
 score matrix has been computed from a network inference algorithm (e.g. DBNScoreStep1 or DBNScoreStep2, Shrinkage, Lasso, ...).  }
 
-\usage{out<-ROCcurve(score,validMat,dec=FALSE)
+\usage{ROCcurve(score,validMat,dec=FALSE)
 }
 
 \arguments{\item{score}{matrix with \eqn{r} rows (=target genes) and
@@ -18,15 +18,16 @@ Lasso, ...).}
 	\item{dec}{boolean, FALSE if the smallest score points out the most significant edge, default=FALSE.} 
 }
 
-\value{A list with out\$x and out\$y contain respctively the \eqn{x} and the \eqn{y} coordinates of the ROC curve.} 
+\value{A list with out$x and out$y contain respctively the \eqn{x} and the \eqn{y} coordinates of the ROC curve.} 
 
 \keyword{utilities}
 
+\author{Lebre Sophie
+  (\url{http://newlsiit.u-strasbg.fr/bfo_en/index.php/Sophie_Lebre}),
+  
+Chiquet Julien (\url{http://stat.genopole.cnrs.fr/~jchiquet}).}
+
 \seealso{DBNScoreStep1, DBNScoreStep2, PRcurve.}
-
-\author{L\`ebre Sophie (\url{http://www3.imperial.ac.uk/theoreticalgenomics/people/slebre}), 
-
-Chiquet Julien (\url{http://stat.genopole.cnrs.fr/~jchiquet/}).}
 
 \examples{
 ## generate the validation matrix
@@ -75,8 +76,7 @@ roc2_0.2<-ROCcurve(score=S2,validMat=abs(MyNet$AdjMatrix)>0,dec=FALSE)
 TP=sum(abs(MyNet$AdjMatrix)>0)
 FN=p^2-TP
 
-plot(roc1$x/FN,roc1$y/TP,type="l", main="ROC curve after both Step1 and
-Step2",
+plot(roc1$x/FN,roc1$y/TP,type="l", main="ROC curve after both Step1 and Step2",
      ylab="True Positive Rate", xlab="False Negative Rate",lwd=2,lty=2)
 lines(roc2_0.8$x/FN, roc2_0.8$y/TP, col=3,lwd=2)
 lines(roc2_0.6$x/FN, roc2_0.6$y/TP, col=4,lwd=2)

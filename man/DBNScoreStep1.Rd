@@ -7,14 +7,15 @@ function infers a 1st order dependence score matrix S1 (\eqn{p \times p})
 which contains the score of each edge of a Dynamic
 Bayesian Network (DAG G(1)) describing first order dependencies between successives variables.  The smallest score points out the most significant edge for the 1st order dependence DAG G(1). The sets of both predictor and target genes can be reduced to different subsets of the \eqn{p} genes. DBNScoreStep1 is the first step of the estimation procedure described in the references. See function DBNScoreStep2 to perform the second step selection and infer a score matrix describing full order dependencies.}
 
-\usage{out <- DBNScoreStep1(data,method='ls',predPosition=NULL,targetPosition=NULL)
+\usage{DBNScoreStep1(data,method='ls',predPosition=NULL,targetPosition=NULL)
 }
 
 \arguments{\item{data}{a matrix with \eqn{n} rows (=time points) and
 \eqn{p} columns (=genes) containing the gene expression time series.}
 	\item{method}{currently M estimation with either LS, Tukey
-	  bisquare or Huber estimator, \code{c('ls','tukey','huber')},
-	  default='ls'.}
+	  bisquare or Huber estimator:
+	  
+	  \code{c('ls','tukey','huber')}, default='ls'.}
 	\item{predPosition}{To be specified to reduce the set of
 possible predictor genes to a subset of \eqn{d<p} genes: an array
 included in \eqn{[1,p]} defining the position of the d predictor genes
@@ -24,20 +25,19 @@ possible target genes to a subset of \eqn{r<p} genes: an array included
 in \eqn{[1,p]} defining the position of the \eqn{r} target genes in the
 data matrix (\eqn{n \times p}), default=NULL.}  }
 
-\value{A list with out\$S1ls a matrix with \eqn{\mathrm{min}(r,p)} rows
+\value{A list with out$S1ls a matrix with \eqn{\mathrm{min}(r,p)} rows
 (=target genes) and \eqn{\mathrm{min}(d,p)} columns (=predictor genes)
-containing the scores S1 obtained with least square estimator, out\$S1huber a matrix
-containing scores S1 obtained with Huber estimator, out\$S1tukey a
+containing the scores S1 obtained with least square estimator, out$S1huber a matrix
+containing scores S1 obtained with Huber estimator, out$S1tukey a
 matrix containing scores S1 obtained with Tukey bisquare (or biweight)
-estimator.(out\$S1ls[i,j] is the score for the edge \eqn{j \leftarrow i} pointing
+estimator.(out$S1ls[i,j] is the score for the edge \eqn{j \leftarrow i} pointing
 out from predictor \eqn{j} toward target \eqn{i}.)}
 
-\references{L\`ebre, S. 2007. Inferring Dynamic Bayesian Networks with low order
- dependencies. Preprint available at
- \url{http://hal.archives-ouvertes.fr/hal-00142109}.}
+\references{Lebre, S. 2009. Inferring dynamic bayesian network with low order independencies, Statistical Applications in Genetics and Molecular Biology, 2009: Vol. 8: Iss. 1, Article 9.}
 
-\author{L\`ebre Sophie (\url{http://www3.imperial.ac.uk/theoreticalgenomics/people/slebre/}),
-
+\author{Lebre Sophie
+  (\url{http://newlsiit.u-strasbg.fr/bfo_en/index.php/Sophie_Lebre}),
+  
 Chiquet Julien (\url{http://stat.genopole.cnrs.fr/~jchiquet}).}
 
 \seealso{DBNScoreStep2, BuildEdges, PRcurve.}
@@ -60,65 +60,97 @@ library(G1DBN)
 
 data(arth800line)
 data<-as.matrix(arth800line)
-idx<-c(60, 141, 260, 333, 365, 424, 441, 512, 521, 578, 789, 799)
+id<-c(60, 141, 260, 333, 365, 424, 441, 512, 521, 578, 789, 799)
 names<-c("carbohydrate/sugar transporter","ATGPX2","putative integral
 membrane prot" ,
 "AT3G05900", "At3g27350", "At1g16720","ATISA3/ISA3","AT4G32190",
 "catalase", "plasma membrane intrinsic prot", "At4g16146", "DPE2")
 
 ## compute score S1 
-out<-DBNScoreStep1(data,method='ls', targetPosition=idx,predPosition=idx)
+out<-DBNScoreStep1(data,method='ls', targetPosition=id,predPosition=id)
 round(out$S1ls,2)
 
 
+## Threshold for the selection of the edges after Step 1
 alpha1=0.5
-edgesG1idx<-BuildEdges(score=out$S1ls,threshold=alpha1,
-                       targetNames=idx,predNames=idx,prec=6)
+## Build the edges with id as label
+edgesG1id<-BuildEdges(score=out$S1ls,threshold=alpha1,
+                       targetNames=id,predNames=id,prec=6)
+## Build the edges with names as label
 edgesG1names<-BuildEdges(score=out$S1ls,threshold=alpha1,
                          targetNames=names,predNames=names,prec=6)
-edgesG1idx[1:15,]
+edgesG1id[1:15,]
 edgesG1names[1:15,]
 
 
 ## compute score S2 from S1 
 S2<-DBNScoreStep2(out$S1ls,data,method='ls',alpha1=alpha1,
-                  predPosition=idx,targetPosition=idx)
+                  predPosition=id,targetPosition=id)
 S2
 
+## Threshold for the selection of the edges after Step 2
 alpha2=0.05
-edgesGidx<-BuildEdges(score=S2,threshold=alpha2,
-                      targetNames=idx,predNames=idx,prec=6)
-edgesGidx
+## Build the edges with id as label
+edgesG2id<-BuildEdges(score=S2,threshold=alpha2,
+                      targetNames=id,predNames=id,prec=6)
+## Build the edges with names as label
+edgesG2names<-BuildEdges(score=S2,threshold=alpha2,
+                         targetNames=names,predNames=names,prec=6)
+edgesG2id
+edgesG2names
+
 
 ## As the number of genes is reduced to 10 here, this results slightly differ
-## from the results obtained in the Preprint cited in References.
+## from the results obtained in the paper (Lebre, 2009) cited in References.
 
 
-## encoding as the adjacency matrix graph
-Step1InferredNet <- BuildNetwork(edgesG1idx,idx)
-
-## encoding as the adjancecy matrix graph
-Step2InferredNet <- BuildNetwork(edgesGidx,idx)
-
+## ======================================
+## PLOTTING THE RESULTS...
+## ______________________________________
+\dontrun{
 ## The Inferred Nets
 ## -----------------
 
-#after Step 2
+## Nodes coordinates are calculated according to the global structure of the graph
+all_parents=c(edgesG1id[,1], edgesG2id[,1])
+all_targets=c(edgesG1id[,2], edgesG2id[,2])
+posEdgesG1=1:dim(edgesG1id)[1]
+posEdgesG2=(dim(edgesG1id)[1]+1):length(all_targets)
+
+## Global network with all the edges
+netAll = graph.edgelist(cbind(as.character(all_parents),as.character(all_targets )))
+
+## Nodes coordinates
+nodeCoord=layout.fruchterman.reingold(netAll)
+
+
 split.screen(c(1,2))
+
+# after Step 1
 screen(1)
-attach(Step2InferredNet)
-pos<-gplot(t(AdjMatrix), vertex.cex=1.5, diag=TRUE,
-      displaylabel=TRUE, usecurv=TRUE, label=names,
-      boxed.label=FALSE, main="Inferred network - Step 2")
-detach(Step2InferredNet)
+# set the edges list
+netG1 = graph.edgelist(cbind(as.character(edgesG1id[,1]),as.character(edgesG1id[,2])))
+# set the object for plotting the network with global coordinates of all nodes
+G1toPlot=delete.edges(netAll, E(netAll)[posEdgesG2] )
+# plot the network
+plot(G1toPlot, layout=nodeCoord, vertex.label = 
+get.vertex.attribute(G1toPlot , name="name"), edge.arrow.size = 0.2,
+main="G1DBN Inferred network:\n Step 1")
 
-#after Step 1
+# after Step 2
 screen(2)
-attach(Step1InferredNet)
-gplot(t(AdjMatrix), vertex.cex=1.5, diag=TRUE, coord=pos,
-      displaylabel=TRUE, usecurv=TRUE, label=names,
-      boxed.label=FALSE, main="Inferred network - Step 1")
-detach(Step1InferredNet)
-close.screen(all = TRUE)
+# set the edges list
 
+netG2 = graph.edgelist(cbind(as.character(edgesG2id[,1]),as.character(edgesG2id[,2])))
+# set the object for plotting the network with global coordinates of all nodes
+G2toPlot=delete.edges(netAll, E(netAll)[posEdgesG1] )
+# plot the network
+plot(G2toPlot, layout=nodeCoord, vertex.label = 
+get.vertex.attribute(G2toPlot , name="name"),edge.arrow.size = 0.2,
+main="G1DBN Inferred network:\n Step 2")
+
+close.screen(all = TRUE)
 }
+}
+
+
