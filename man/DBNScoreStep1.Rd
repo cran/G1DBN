@@ -36,7 +36,8 @@ out from predictor \eqn{j} toward target \eqn{i}.)}
 \references{Lebre, S. 2009. Inferring dynamic bayesian network with low order independencies, Statistical Applications in Genetics and Molecular Biology, 2009: Vol. 8: Iss. 1, Article 9.}
 
 \author{Lebre Sophie
-  (\url{http://newlsiit.u-strasbg.fr/bfo_en/index.php/Sophie_Lebre}),
+   (\url{http://icube-bfo.unistra.fr/en/index.php/Sophie_Lebre}),
+ 
   
 Chiquet Julien (\url{http://stat.genopole.cnrs.fr/~jchiquet}).}
 

@@ -1,4 +1,4 @@
-5ec7a8ca931346186428fd8cad168a01 *DESCRIPTION
+6681b24f57ea469579d97202ab3a06b4 *DESCRIPTION
 503d4bc47e3f726bc144f6c7bac32046 *NAMESPACE
 86f7b0b7540d7fbe955b13f6953057b3 *R/BuildEdges.R
 c90b24aaf04d27b5f90cc7ab75a7cd19 *R/BuildNetwork.R
@@ -9,12 +9,12 @@ cdba6ccd29da060e5315e2469ef9444f *R/ROCcurve.R
 ae6d8c8555e1a6e94415bdde6092b250 *R/SimulGeneExpressionAR1.R
 caed8626d209bfc58a7ee3d87556b1d0 *R/SimulNetworkAdjMatrix.R
 d7d156babec1abf75ad4a7822c75c710 *data/arth800line.rda
-fe94ad75a66cf3cec1926ca670b583c7 *man/BuildEdges.Rd
-acd7b0a814f071a21a3b5a051dabdfe3 *man/BuildNetwork.Rd
-2395f30c76c3d6940e416b7fc739dcfa *man/DBNScoreStep1.Rd
-22b3dc8082dda8c04b1f7f9d8892286a *man/DBNScoreStep2.Rd
-28a3765bcd351e865a70e43af625a843 *man/PRcurve.Rd
-7a3cf15620870ff5eec895ef49cc25ae *man/ROCcurve.Rd
-22724554d61aa05992cc715a2858da1d *man/SimulGeneExpressionAR1.Rd
-b13d43078811b6802ebbfb563ae9590e *man/SimulNetworkAdjMatrix.Rd
-a6ac377defd0ce260c86281b2fc3d5d8 *man/arth800line.Rd
+1431b0e2f55a4ee56dc8d2dd18959a10 *man/BuildEdges.Rd
+e02d8425e97b855f537a111540b756a7 *man/BuildNetwork.Rd
+bb025798ece7bc546950105c78fd2b57 *man/DBNScoreStep1.Rd
+65fb9e292936d8725db183f413d2afa0 *man/DBNScoreStep2.Rd
+2c43b43adb6325d270761776d7a5fcea *man/PRcurve.Rd
+9c39d5d41716e8392f68c04d59bbf4f4 *man/ROCcurve.Rd
+4e9c9c70659dcaaa7ee9e1a134c0a2ee *man/SimulGeneExpressionAR1.Rd
+a4d1f9dc89e8459a11ed955651cad876 *man/SimulNetworkAdjMatrix.Rd
+7ffcaf0d59aac56d773c28828c084d22 *man/arth800line.Rd

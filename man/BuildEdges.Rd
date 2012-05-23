@@ -30,7 +30,7 @@ corresponding score). Predictors and targets are referred to through the
 names given by targetNames or predNames when specified.  }
 
 \author{Lebre Sophie
-  (\url{http://newlsiit.u-strasbg.fr/bfo_en/index.php/Sophie_Lebre}),
+  (\url{http://icube-bfo.unistra.fr/en/index.php/Sophie_Lebre}),
   
 Chiquet Julien (\url{http://stat.genopole.cnrs.fr/~jchiquet}).}
 

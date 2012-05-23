@@ -30,7 +30,9 @@ experiment time series).}
    transcriptional and posttranscriptional regulation of starch
    metabolism in Arabidopsis leaves. Plant Physiol. 136: 2687-2699.}
 
-\author{Lebre Sophie (\url{http://newlsiit.u-strasbg.fr/bfo_en/index.php/Sophie_Lebre}), 
+ \author{Lebre Sophie
+  (\url{http://icube-bfo.unistra.fr/en/index.php/Sophie_Lebre}),
+
 
 Chiquet Julien (\url{http://stat.genopole.cnrs.fr/~jchiquet/}).}
 

@@ -18,7 +18,9 @@ couple of vertices plus the associated score)}
 
 \seealso{BuildEdges}
 
-\author{Lebre Sophie (\url{http://newlsiit.u-strasbg.fr/bfo_en/index.php/Sophie_Lebre}),
+\author{Lebre Sophie
+   (\url{http://icube-bfo.unistra.fr/en/index.php/Sophie_Lebre}),
+ 
 
 Chiquet Julien (\url{http://stat.genopole.cnrs.fr/~jchiquet}).}
 

@@ -22,7 +22,8 @@ where \eqn{\varepsilon(t)} follows a zero-centered multivariate gaussian distrib
 }
 
 \author{Lebre Sophie
-  (\url{http://newlsiit.u-strasbg.fr/bfo_en/index.php/Sophie_Lebre}),
+   (\url{http://icube-bfo.unistra.fr/en/index.php/Sophie_Lebre}),
+ 
   
 Chiquet Julien (\url{http://stat.genopole.cnrs.fr/~jchiquet}).}
 
