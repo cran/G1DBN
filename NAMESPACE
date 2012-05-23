@@ -6,5 +6,5 @@ export(PRcurve)
 export(ROCcurve)
 export(SimulGeneExpressionAR1)
 export(SimulNetworkAdjMatrix)
-
+exportPattern("^[[:alpha:]]+")
 
